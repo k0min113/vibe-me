@@ -29,12 +29,13 @@
 
 /* 색상·폰트 등 공통 값을 변수로 정의 */
 :root {
-  --brand: #6C5CE7;
-  --bg: #bfbaf8;
+  --brand: #8a7ded;
+  --brand-deep: #6c5ce7;
+  --bg: #7d74c9;
   --card-bg: #ffffff;
   --text: #2d3436;
   --text-muted: #636e72;
-  --shadow: 0 8px 24px rgba(108, 92, 231, 0.12);
+  --shadow: 0 16px 40px rgba(108, 92, 231, 0.22);
 }
 
 /* 글자 선택 시 강조 색 */
@@ -45,13 +46,17 @@
 
 /* 페이지 전체 배경 */
 body {
-  min-height: 100vh; /* 세로 중앙 정렬을 위해 화면 높이만큼 body를 키움 */
-  display: flex; /* Flexbox로 자식(카드) 배치 */
-  justify-content: center; /* 가로 중앙 정렬 */
-  align-items: center; /* 세로 중앙 정렬 */
-  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.18), transparent 40%),
+    radial-gradient(circle at 80% 80%, rgba(60, 45, 140, 0.35), transparent 45%),
+    var(--bg);
   color: var(--text);
-  font-family: 'Aggravo', sans-serif; /* 전체 기본 폰트 */
+  font-family: 'Aggravo', sans-serif;
   line-height: 1.6;
 }
 
@@ -67,41 +72,69 @@ body {
   }
 }
 
-/* 명함 카드 컨테이너 */
+/* 명함 카드 — 실물 명함 비율(약 91×55) */
 .card {
-  display: flex; /* 안쪽 블록을 세로로 쌓기 */
-  flex-direction: column;
-  gap: 24px; /* 섹션 사이 위아래 간격 */
-  width: 100%;
-  max-width: 420px;
-  padding: 40px 32px;
-  background: #e5dcf9;
-  border-radius: 24px;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: min(560px, 94vw);
+  aspect-ratio: 91 / 55;
+  overflow: hidden;
+  background: var(--card-bg);
+  border-radius: 18px;
   box-shadow: var(--shadow);
-  animation: cardIn 0.6s ease both; /* 페이지 진입 시 부드럽게 등장 */
+  animation: cardIn 0.6s ease both;
 }
 
-/* 프로필 사진 — 원형 */
+/* 왼쪽 사진 영역 */
+.card-photo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38%;
+  background: linear-gradient(160deg, #d9d2ff 0%, #b8aef5 100%);
+}
+
+/* 프로필 사진 — 원형 + 테두리 */
 .avatar {
   display: block;
-  width: 120px;
-  height: 120px;
+  width: 108px;
+  height: 108px;
   object-fit: cover;
   border-radius: 50%;
   overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 16px rgba(76, 61, 160, 0.25);
 }
 
-/* 프로필 헤더(사진·이름·소속) */
+/* 오른쪽 정보 영역 */
+.card-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  flex: 1;
+  padding: 22px 26px;
+  background: linear-gradient(180deg, #fbfaff 0%, #f3efff 100%);
+}
+
 header {
   display: flex;
   flex-direction: column;
-  gap: 12px; /* 헤더 안 글자 위아래 간격 */
+  gap: 0;
 }
 
 /* 이름 제목 */
 h1 {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+h1 .fa-music {
+  color: var(--brand);
+  font-size: 0.72em;
 }
 
 /* Aggravo 폰트 적용 (기존 클래스 유지) */
@@ -112,55 +145,71 @@ h1 {
 
 /* 직함·소속 */
 .role {
-  font-size: 14px;
-  color: var(--text-muted);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--brand-deep);
 }
 
-/* 자기소개 영역 (소속 + 소개를 붙여 배치) */
+/* 자기소개 영역 */
 .bio {
   display: flex;
   flex-direction: column;
-  gap: 4px; /* 두 문장 사이만 살짝 띄움 */
-  font-size: 15px;
-  line-height: 1.6;
+  gap: 2px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
 }
 
 /* 외부 링크 목록 */
 .links {
-  display: flex; /* 링크들을 가로 한 줄로 배치 */
-  justify-content: center; /* 링크 그룹을 가로 중앙 정렬 */
-  gap: 20px; /* 링크 사이 간격을 gap으로 지정 */
+  display: flex;
+  gap: 14px;
+  margin-top: 2px;
 }
 
 .links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   color: var(--brand);
-  text-decoration: none; /* 링크 밑줄 제거 */
+  text-decoration: none;
+  font-size: 13px;
   transition: color 0.2s ease;
 }
 
 .links a:hover {
-  color: #4834d4; /* hover 시 색 변화 */
+  color: #4834d4;
 }
 
 /* 연락처 보기 버튼 */
 .btn {
-  display: block; /* 가운데 정렬을 위해 block으로 */
-  margin-inline: auto; /* 가로 중앙 배치 */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  margin-top: 4px;
   background: var(--brand);
   color: #ffffff;
   border: none;
   border-radius: 999px;
-  padding: 15px 32px;
-  font-family: inherit; /* 버튼 글꼴을 body에서 상속 */
-  font-size: 16px;
+  padding: 9px 18px;
+  font-family: inherit;
+  font-size: 13px;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
 }
 
 .btn:hover {
-  background: #4834d4; /* hover 시 색 변화 */
+  background: #4834d4;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(108, 92, 231, 0.35);
+}
+
+/* 하단 저작권 문구 */
+footer {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
 }
 
 /* 모달 배경 페이드 인 */
@@ -186,7 +235,7 @@ h1 {
   display: none;
   position: fixed;
   inset: 0;
-  z-index: 100; /* 카드 위에 표시 */
+  z-index: 100;
   background: rgba(0, 0, 0, 0.5);
   justify-content: center;
   align-items: center;
@@ -194,7 +243,7 @@ h1 {
 
 .modal.is-open {
   display: flex;
-  animation: modalFade 0.25s ease; /* 배경이 부드럽게 나타남 */
+  animation: modalFade 0.25s ease;
 }
 
 .modal-box {
@@ -209,7 +258,7 @@ h1 {
 }
 
 .modal.is-open .modal-box {
-  animation: modalBoxIn 0.35s ease both; /* 박스가 아래에서 떠오름 */
+  animation: modalBoxIn 0.35s ease both;
 }
 
 .modal-box h2 {
@@ -238,8 +287,30 @@ h1 {
   background: #4834d4;
 }
 
-/* 하단 저작권 문구 */
-footer {
-  font-size: 13px;
-  color: var(--text-muted);
+/* 좁은 화면에서는 세로로 쌓기 */
+@media (max-width: 520px) {
+  .card {
+    flex-direction: column;
+    aspect-ratio: auto;
+    width: min(360px, 92vw);
+  }
+
+  .card-photo {
+    width: 100%;
+    padding: 28px 0 18px;
+  }
+
+  .card-info {
+    padding: 18px 22px 24px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .links {
+    justify-content: center;
+  }
+
+  .btn {
+    align-self: center;
+  }
 }
