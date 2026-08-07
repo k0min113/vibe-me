@@ -1,13 +1,90 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=, initial-scale=1.0">
+
     <title>박경민</title>
+
+    <!-- Google Fonts 불러오기 -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Dongle&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome 아이콘 불러오기 -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- 내 스타일시트 연결 -->
+
     <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
+    <div class="modal" id="modal">
+        <div class="modal-box">
+            <h2>연락처</h2>
+            <p>010-3733-6579</p>
+            <p>sadie6579@gmail.com</p>
+            <button id="closeBtn">닫기</button>
+        </div>
+    </div>
+
+    <!-- 명함 카드 전체를 감싸는 영역 -->
+
+    <main class="card">
+
+        <!-- 프로필 사진, 이름 -->
+        <header>
+            <img class="avatar" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDEyMDdfMjA5%2FMDAxNzMzNTM4Mzk0NTY0.AUJ9QZz7kGwQqKWZdopH_ntUff3zMZ3-dj15hgVwC6Ug.1u0HwpxtqJJluXcDS76pudlv7ZglfWEFth20qcNaB2kg.JPEG%2F1733538388427.jpg&type=sc960_832" alt="박경민 프로필 사진" />
+            <h1 class="bagel-fat-one-regular">박경민 <i class="fa-solid fa-music"></i></h1>
+        </header>
+
+        <!-- 소속 + 한 줄 자기소개 (붙여 배치) -->
+        <section class="bio">
+            <p class="role">동국대 . 바이브 코딩 부트캠프</p>
+            <p>불편함을 서비스로 바꾸는 걸 좋아합니다.</p>
+        </section>
+
+
+
+        <!-- GitHub, Insta 등 외부 링크 -->
+
+        <nav class="links">
+
+            <a href="https://github.com/k0min113" target="_blank"><i class="fa-solid fa-location-dot"></i> GitHub</a>
+
+            <a href="https://instagram.com/k0min113" target="_blank"><i class="fa-brands fa-instagram"></i> Insta</a>
+
+        </nav>
+
+
+
+        <!-- 연락처 보기 버튼 -->
+
+        <button class="btn" id="contactBtn"><i class="fa-solid fa-phone"></i> 연락처 보기</button>
+
+        <!-- 하단 저작권 표시 -->
+
+        <footer> 2026 Kyoungmin Park</footer>
+
+    </main>
+
+
+
+    <!-- 버튼 클릭 등 동작을 위한 스크립트 -->
 
     <script src="script.js"></script>
+
 </body>
+
 </html>
+

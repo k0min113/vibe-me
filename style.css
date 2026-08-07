@@ -1,3 +1,245 @@
-body{
-    background: #33ebd5;
+/* Aggravo 폰트 등록 (300/500/700) */
+@font-face {
+  font-family: 'Aggravo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroL.woff') format('woff');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aggravo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroM.woff') format('woff');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Aggravo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SBAggroB.woff') format('woff');
+  font-weight: 700;
+  font-display: swap;
+}
+
+/* 기본 여백·박스 크기 초기화 */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* 색상·폰트 등 공통 값을 변수로 정의 */
+:root {
+  --brand: #6C5CE7;
+  --bg: #bfbaf8;
+  --card-bg: #ffffff;
+  --text: #2d3436;
+  --text-muted: #636e72;
+  --shadow: 0 8px 24px rgba(108, 92, 231, 0.12);
+}
+
+/* 글자 선택 시 강조 색 */
+::selection {
+  background: var(--brand);
+  color: #ffffff;
+}
+
+/* 페이지 전체 배경 */
+body {
+  min-height: 100vh; /* 세로 중앙 정렬을 위해 화면 높이만큼 body를 키움 */
+  display: flex; /* Flexbox로 자식(카드) 배치 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Aggravo', sans-serif; /* 전체 기본 폰트 */
+  line-height: 1.6;
+}
+
+/* 카드 등장 애니메이션 */
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 명함 카드 컨테이너 */
+.card {
+  display: flex; /* 안쪽 블록을 세로로 쌓기 */
+  flex-direction: column;
+  gap: 24px; /* 섹션 사이 위아래 간격 */
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 32px;
+  background: #e5dcf9;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  animation: cardIn 0.6s ease both; /* 페이지 진입 시 부드럽게 등장 */
+}
+
+/* 프로필 사진 — 원형 */
+.avatar {
+  display: block;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+/* 프로필 헤더(사진·이름·소속) */
+header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* 헤더 안 글자 위아래 간격 */
+}
+
+/* 이름 제목 */
+h1 {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* Aggravo 폰트 적용 (기존 클래스 유지) */
+.bagel-fat-one-regular {
+  font-family: 'Aggravo', sans-serif;
+  font-style: normal;
+}
+
+/* 직함·소속 */
+.role {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+/* 자기소개 영역 (소속 + 소개를 붙여 배치) */
+.bio {
+  display: flex;
+  flex-direction: column;
+  gap: 4px; /* 두 문장 사이만 살짝 띄움 */
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* 외부 링크 목록 */
+.links {
+  display: flex; /* 링크들을 가로 한 줄로 배치 */
+  justify-content: center; /* 링크 그룹을 가로 중앙 정렬 */
+  gap: 20px; /* 링크 사이 간격을 gap으로 지정 */
+}
+
+.links a {
+  color: var(--brand);
+  text-decoration: none; /* 링크 밑줄 제거 */
+  transition: color 0.2s ease;
+}
+
+.links a:hover {
+  color: #4834d4; /* hover 시 색 변화 */
+}
+
+/* 연락처 보기 버튼 */
+.btn {
+  display: block; /* 가운데 정렬을 위해 block으로 */
+  margin-inline: auto; /* 가로 중앙 배치 */
+  background: var(--brand);
+  color: #ffffff;
+  border: none;
+  border-radius: 999px;
+  padding: 15px 32px;
+  font-family: inherit; /* 버튼 글꼴을 body에서 상속 */
+  font-size: 16px;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+}
+
+.btn:hover {
+  background: #4834d4; /* hover 시 색 변화 */
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(108, 92, 231, 0.35);
+}
+
+/* 모달 배경 페이드 인 */
+@keyframes modalFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 모달 박스 살짝 올라오며 등장 */
+@keyframes modalBoxIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* 연락처 모달 */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100; /* 카드 위에 표시 */
+  background: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.is-open {
+  display: flex;
+  animation: modalFade 0.25s ease; /* 배경이 부드럽게 나타남 */
+}
+
+.modal-box {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  padding: 32px;
+  border-radius: 20px;
+  text-align: center;
+  min-width: 260px;
+}
+
+.modal.is-open .modal-box {
+  animation: modalBoxIn 0.35s ease both; /* 박스가 아래에서 떠오름 */
+}
+
+.modal-box h2 {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.modal-box p {
+  color: var(--text);
+  font-size: 15px;
+}
+
+#closeBtn {
+  margin-top: 8px;
+  background: var(--brand);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 24px;
+  font-family: inherit;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+#closeBtn:hover {
+  background: #4834d4;
+}
+
+/* 하단 저작권 문구 */
+footer {
+  font-size: 13px;
+  color: var(--text-muted);
 }
