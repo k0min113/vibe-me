@@ -3,6 +3,16 @@ const contactBtn = document.querySelector('#contactBtn');
 const closeBtn = document.querySelector('#closeBtn');
 const themeToggle = document.querySelector('#themeToggle');
 
+function openModal() {
+  modal.classList.add('is-open');
+  modal.removeAttribute('hidden');
+}
+
+function closeModal() {
+  modal.classList.remove('is-open');
+  modal.setAttribute('hidden', '');
+}
+
 // 저장된 테마 불러오기 (없으면 시스템 설정 따름)
 const savedTheme = localStorage.getItem('theme');
 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -28,18 +38,21 @@ themeToggle.addEventListener('click', () => {
 });
 
 // 연락처 보기 → 모달 열기
-contactBtn.addEventListener('click', () => {
-  modal.classList.add('is-open');
-});
+contactBtn.addEventListener('click', openModal);
 
 // 닫기 → 모달 닫기
-closeBtn.addEventListener('click', () => {
-  modal.classList.remove('is-open');
-});
+closeBtn.addEventListener('click', closeModal);
 
 // 어두운 배경 클릭 시에도 닫기
 modal.addEventListener('click', (e) => {
   if (e.target === modal) {
-    modal.classList.remove('is-open');
+    closeModal();
+  }
+});
+
+// Esc 키로 모달 닫기
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+    closeModal();
   }
 });

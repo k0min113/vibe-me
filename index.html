@@ -3,8 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>박경민</title>
-    <meta name="description" content="동국대 정보통신공학과 · 바이브 코딩 부트캠프 · 박경민 명함">
+    <title>박경민 | 동국대 정보통신공학과 · 바이브 코딩</title>
+    <meta name="description" content="동국대학교 정보통신공학과 1학년 박경민의 디지털 명함. 바이브 코딩 부트캠프, GitHub, Instagram, 연락처를 확인하세요.">
+    <meta name="keywords" content="박경민, 동국대, 정보통신공학과, 바이브 코딩, 부트캠프, 포트폴리오, 명함">
+    <meta name="author" content="박경민">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="googlebot" content="index, follow">
+    <link rel="canonical" href="https://k0min113.github.io/vibe-me/">
 
     <!-- 파비콘 (루트 + images/favi) -->
     <link rel="icon" href="favicon.ico" sizes="any">
@@ -19,23 +24,56 @@
     <meta name="theme-color" content="#8a7ded">
 
     <!-- Open Graph -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="profile">
     <meta property="og:site_name" content="박경민">
-    <meta property="og:title" content="박경민">
-    <meta property="og:description" content="동국대 정보통신공학과 · 바이브 코딩 부트캠프">
+    <meta property="og:title" content="박경민 | 동국대 정보통신공학과 · 바이브 코딩">
+    <meta property="og:description" content="동국대학교 정보통신공학과 1학년 박경민의 디지털 명함. 바이브 코딩 부트캠프, GitHub, Instagram, 연락처를 확인하세요.">
     <meta property="og:url" content="https://k0min113.github.io/vibe-me/">
     <meta property="og:image" content="https://k0min113.github.io/vibe-me/og.png">
     <meta property="og:image:secure_url" content="https://k0min113.github.io/vibe-me/og.png">
     <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="박경민 디지털 명함 미리보기">
     <meta property="og:locale" content="ko_KR">
+    <meta property="profile:first_name" content="경민">
+    <meta property="profile:last_name" content="박">
+    <meta property="profile:username" content="k0min113">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="박경민">
-    <meta name="twitter:description" content="동국대 정보통신공학과 · 바이브 코딩 부트캠프">
+    <meta name="twitter:title" content="박경민 | 동국대 정보통신공학과 · 바이브 코딩">
+    <meta name="twitter:description" content="동국대학교 정보통신공학과 1학년 박경민의 디지털 명함.">
     <meta name="twitter:image" content="https://k0min113.github.io/vibe-me/og.png">
+    <meta name="twitter:image:alt" content="박경민 디지털 명함 미리보기">
+
+    <!-- 구조화 데이터 (Google 검색용 JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "박경민",
+      "alternateName": "Kyoungmin Park",
+      "url": "https://k0min113.github.io/vibe-me/",
+      "image": "https://avatars.githubusercontent.com/u/312369977?s=400&u=71efe607c4d4ec07b150d1cd5322f5116ee484a3&v=4",
+      "email": "mailto:sadie6579@gmail.com",
+      "telephone": "+82-10-3733-6579",
+      "jobTitle": "정보통신공학과 1학년",
+      "affiliation": {
+        "@type": "CollegeOrUniversity",
+        "name": "동국대학교"
+      },
+      "alumniOf": {
+        "@type": "EducationalOrganization",
+        "name": "바이브 코딩 부트캠프"
+      },
+      "sameAs": [
+        "https://github.com/k0min113",
+        "https://instagram.com/k0min113"
+      ],
+      "description": "동국대학교 정보통신공학과 1학년, 바이브 코딩 부트캠프"
+    }
+    </script>
 
     <!-- Google Fonts 불러오기 -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,46 +85,62 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- 스크린 리더용 페이지 소개 -->
+    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
     <!-- 다크모드 토글 -->
-    <button class="theme-toggle" id="themeToggle" aria-label="다크모드 전환">
-        <i class="fa-solid fa-moon icon-moon"></i>
-        <i class="fa-solid fa-sun icon-sun"></i>
+    <button class="theme-toggle" id="themeToggle" type="button" aria-label="다크모드 전환">
+        <i class="fa-solid fa-moon icon-moon" aria-hidden="true"></i>
+        <i class="fa-solid fa-sun icon-sun" aria-hidden="true"></i>
     </button>
 
-    <div class="modal" id="modal">
+    <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
         <div class="modal-box">
-            <h2>연락처</h2>
-            <p>010-3733-6579</p>
-            <p>sadie6579@gmail.com</p>
-            <button id="closeBtn">닫기</button>
+            <h2 id="modalTitle">연락처</h2>
+            <p><a href="tel:010-3733-6579">010-3733-6579</a></p>
+            <p><a href="mailto:sadie6579@gmail.com">sadie6579@gmail.com</a></p>
+            <button id="closeBtn" type="button">닫기</button>
         </div>
     </div>
 
     <!-- 명함 카드 -->
-    <main class="card">
+    <main class="card" id="main" itemscope itemtype="https://schema.org/Person">
         <!-- 왼쪽: 사진 -->
         <div class="card-photo">
-            <img class="avatar" src="https://avatars.githubusercontent.com/u/312369977?s=400&u=71efe607c4d4ec07b150d1cd5322f5116ee484a3&v=4" alt="박경민 프로필 사진" />
+            <img
+                class="avatar"
+                src="https://avatars.githubusercontent.com/u/312369977?s=400&u=71efe607c4d4ec07b150d1cd5322f5116ee484a3&v=4"
+                alt="박경민 프로필 사진"
+                width="108"
+                height="108"
+                itemprop="image"
+            />
         </div>
 
-        <!-- 오른쪽: 정보 (글자 내용은 그대로) -->
+        <!-- 오른쪽: 정보 -->
         <div class="card-info">
             <header>
-                <h1 class="bagel-fat-one-regular">박경민 <i class="fa-solid fa-music"></i></h1>
+                <h1 class="bagel-fat-one-regular" itemprop="name">박경민 <i class="fa-solid fa-music" aria-hidden="true"></i></h1>
             </header>
 
-            <section class="bio">
-                <p class="role">바이브 코딩 부트캠프</p>
-                <p>정보통신공학과 1학년</p>
+            <section class="bio" aria-label="소개">
+                <p class="role" itemprop="memberOf">바이브 코딩 부트캠프</p>
+                <p itemprop="jobTitle">정보통신공학과 1학년</p>
             </section>
 
-            <nav class="links">
-                <a href="https://github.com/k0min113" target="_blank"><i class="fa-solid fa-location-dot"></i> GitHub</a>
-                <a href="https://instagram.com/k0min113" target="_blank"><i class="fa-brands fa-instagram"></i> Insta</a>
+            <nav class="links" aria-label="소셜 링크">
+                <a href="https://github.com/k0min113" target="_blank" rel="noopener noreferrer me" itemprop="sameAs">
+                    <i class="fa-solid fa-location-dot" aria-hidden="true"></i> GitHub
+                </a>
+                <a href="https://instagram.com/k0min113" target="_blank" rel="noopener noreferrer me" itemprop="sameAs">
+                    <i class="fa-brands fa-instagram" aria-hidden="true"></i> Insta
+                </a>
             </nav>
 
-            <button class="btn" id="contactBtn"><i class="fa-solid fa-phone"></i> 연락처 보기</button>
-            <footer>2026 KMP</footer>
+            <button class="btn" id="contactBtn" type="button" aria-haspopup="dialog">
+                <i class="fa-solid fa-phone" aria-hidden="true"></i> 연락처 보기
+            </button>
+            <footer>© 2026 KMP · <span itemprop="affiliation">동국대학교</span></footer>
         </div>
     </main>
 
