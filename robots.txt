@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://k0min113.github.io/vibe-me/sitemap.xml
+Sitemap: https://k0min113.netlify.app/sitemap.xml
